@@ -1,0 +1,1 @@
+export const guestPage = async(req,res)
