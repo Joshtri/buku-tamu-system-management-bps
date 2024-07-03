@@ -1,0 +1,16 @@
+
+{{> main}}
+
+<div class="container mt-3">
+    <a href="/adm/data/guest" class="btn btn-secondary">Kembali</a>
+    <hr>
+    <h1>Detail Tamu</h1>
+
+    <p><strong>Nama Lengkap:</strong> {{guest.nama_lengkap}}</p>
+    <p><strong>Asal:</strong> {{guest.asal}}</p>
+    <p><strong>Keperluan:</strong> {{guest.keperluan}}</p>
+    <p><strong>Orang Dituju:</strong> {{guest.orang_dituju}}</p>
+    <p><strong>No Hp:</strong> {{guest.no_hp}}</p>
+
+    <img src="data:image/svg+xml;base64,{{guest.signature}}">
+</div>

@@ -1,0 +1,110 @@
+{{> main}}
+<!-- Menu Section -->
+<link rel="stylesheet" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+
+<section class="menu bg-light  mt-1 pb-1">
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" href="/adm/dashboard">Beranda</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="/adm/data/guest">Data Tamu</a>
+            </li>
+
+            <a href="/logout" class="ms-auto">
+                <button class="btn btn-light fs-5 ">
+                    <span class="badge bg-danger">LogOut</span>
+                </button>
+            </a>
+
+        </ul>
+    </div>
+</section>
+
+
+<div class="container mb-5 mt-2">
+   
+    <div class="btn-toolbar mb-2 mb-md-0 float-end">
+        <div class="btn-group">
+        {{!-- <button type="button" class="btn btn-sm btn-outline-secondary">Share</button> --}}
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Export
+            </button>
+            <ul class="dropdown-menu">
+            {{!-- <li><a class="dropdown-item" href="/adm/data/export-docx">Export as Docx</a></li> --}}
+            <li><a class="dropdown-item" href="/adm/data/export-excel">Export as Excel</a></li>
+            <li><a class="dropdown-item" href="/adm/data/export-pdf">Export as PDF</a></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+
+    <section>
+
+        <table class="" id="guestTable">
+        <thead>
+            <th>No</th>
+            <th>Nama Lengkap</th>
+            <th>Asal</th>
+            <th>Orang Dituju</th>
+            <th class="text-center">Aksi</th>
+        </thead>
+        <tbody>
+            {{#each guestData}}
+                <tr>
+                    <td>{{indexPlusOne @index}}</td> <!-- Use @index to display item number -->
+                    <td>{{this.nama_lengkap}}</td>
+                    <td>{{this.asal}}</td>
+                    <td>{{this.orang_dituju}}</td>
+                    <td class="text-center">
+                        <a href="/adm/data/guest/{{this.id}}" title="Detail Tamu"><i data-lucide="view"></i></a>
+
+                    </td>
+                </tr>
+            {{/each}}
+            
+        </tbody>
+        </table>
+
+    </section>
+    
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+  
+    $(document).ready(function() {
+      $('#guestTable').DataTable({
+        // Set the length menu to allow the user to select how many entries to show
+        lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+        
+        // Enable sorting on all columns
+        ordering: true,
+        
+        // Enable pagination
+        paging: true,
+        
+        // Set the default number of entries to display per page
+        pageLength: 5,
+        
+        // Enable searching/filtering
+        searching: true,
+        
+
+        
+        // Enable responsive design for the table
+        responsive: true
+      });
+    });
+  </script>
+  
+<script>
+    lucide.createIcons();
+</script>
