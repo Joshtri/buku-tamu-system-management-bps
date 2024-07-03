@@ -10,6 +10,7 @@ import hbs from 'hbs';
 import handlebarsLayouts from 'handlebars-layouts';
 import connectDB from './config/dbConfig.js';
 import envFile from './config/envConfig.js';
+import MongoStore from 'connect-mongo';
 
 // Load environment variables from the appropriate .env file
 config({ path: path.resolve(process.cwd(), envFile) });
@@ -23,8 +24,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 connectDB();
-
-
 
 // Setup view engine
 app.set('view engine', 'hbs');
@@ -55,12 +54,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Session middleware
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-}));
-
+app.use(
+  session({
+    proxy: true,
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    name: 'bps',
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI, // Replace with your MongoDB connection string
+      collectionName: 'sessions'
+    })
+  })
+);
 // Flash middleware
 app.use(flash({ sessionKeyName: 'flashMessage' }));
 
