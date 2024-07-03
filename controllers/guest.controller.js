@@ -1,5 +1,5 @@
 import {createExcel} from '../helpers/createExcel.js';
-import {createPDF} from '../helpers/createPDF.js';
+import {createPDF} from '../helpers/createPdf.js';
 
 import * as guestServices from '../services/guest.services.js';
 
