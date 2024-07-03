@@ -55,13 +55,3 @@ export const convertToPDF = async (req, res) => {
     }
 };
 
-// Ekspor ke DOCX
-export const convertToDOCX = async (req, res) => {
-    try {
-        const guestData = await guestServices.getAllGuest();
-        createDOCX(guestData, res);
-    } catch (error) {
-        console.error('Error retrieving data from database:', error);
-        res.status(500).send('Internal Server Error');
-    }
-};
