@@ -1,6 +1,6 @@
 import excel from 'exceljs';
 
-const createExcel = (data, res) => {
+export const createExcel = (data, res) => {
     // Create workbook and worksheet
     const workbook = new excel.Workbook();
     const worksheet = workbook.addWorksheet('Guests');
@@ -40,4 +40,4 @@ const createExcel = (data, res) => {
         });
 };
 
-export default createExcel;
+

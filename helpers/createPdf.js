@@ -1,7 +1,7 @@
 import PDFDocument from 'pdfkit';
 
 // Fungsi untuk membuat file PDF dari data tamu
-const createPDF = (data, res) => {
+export const createPDF = (data, res) => {
     // Create a PDF document
     const doc = new PDFDocument();
     let filename = 'guests.pdf';
@@ -31,4 +31,3 @@ const createPDF = (data, res) => {
     doc.end();
 };
 
-export default createPDF;
